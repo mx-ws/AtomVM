@@ -29,6 +29,7 @@ set(ELIXIR_MODULES
     Code
     Console
     GPIO
+    PIO
     I2C
     Integer
     LEDC
