@@ -98,9 +98,11 @@ int pio_helper() {
     };
     // Find a free pio and state machine and add the program
     //bool rc = pio_claim_free_sm_and_add_program_for_gpio_range(&my_blink_prog, &pio, &sm, &offset, PIO_BLINK_LED1_GPIO, 2, true);
+    //bool rc0 = pio_claim_free_sm_and_add_program(&my_blink_prog, &pio, &sm, &offset);
     sm = pio_claim_unused_sm(pio, true);
-    bool rc = pio_add_program(pio, &my_blink_prog);
-    hard_assert(rc);
+    offset = pio_add_program(pio, &my_blink_prog);
+    //hard_assert(rc);
+    hard_assert(offset >= 0);
     //printf("Loaded program at %u on pio %u\n", offset, PIO_NUM(pio));
 
     // Start led1 flashing
@@ -119,7 +121,7 @@ static term nif_pio_init(Context *ctx, int argc, term argv[])
     UNUSED(argc);
 
     VALIDATE_VALUE(argv[0], term_is_integer);
-    int unused_pio_var = argv[0];
+    int unused_pio_var = term_to_int(argv[0]);
     if (UNLIKELY(unused_pio_var != 0)) {
         RAISE_ERROR(BADARG_ATOM);
     }

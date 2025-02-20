@@ -104,4 +104,4 @@ if (PICO_CYW43_SUPPORTED)
     target_link_options(libAtomVM${PLATFORM_LIB_SUFFIX} PUBLIC "SHELL:-Wl,-u -Wl,networkregister_port_driver -Wl,-u -Wl,otp_socket_nif -Wl,-u -Wl,otp_net_nif -Wl,-u -Wl,otp_ssl_nif")
 endif()
 
-target_link_options(libAtomVM${PLATFORM_LIB_SUFFIX} PUBLIC "SHELL:-Wl,-u -Wl,gpio_nif -Wl,-u -Wl,otp_crypto_nif")
+target_link_options(libAtomVM${PLATFORM_LIB_SUFFIX} PUBLIC "SHELL:-Wl,-u -Wl,gpio_nif -Wl,-u -Wl,pio_nif -Wl,-u -Wl,otp_crypto_nif")
